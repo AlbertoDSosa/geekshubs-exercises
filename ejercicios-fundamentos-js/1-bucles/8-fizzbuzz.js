@@ -14,11 +14,14 @@ function multiplo(int, num) {
 }
 
 for(let i = 1; i <= 100; i++) {
-    if(multiplo(3, i) && multiplo(5, i)) {
+    let multiploTres = multiplo(3, i);
+    let multiploCinco = multiplo(5, i);
+
+    if(multiploTres && multiploCinco) {
         console.log('GEEKSHUBS');
-    } else if(multiplo(3, i)) {
+    } else if(multiploTres) {
         console.log('GEEKS');
-    } else if(multiplo(5, i)) {
+    } else if(multiploCinco) {
         console.log('HUBS');
     } else {
         console.log(i);
