@@ -3,9 +3,15 @@
 //  Crea un objecto en la variable llamada obj
 //  de tal modo que el siguiente código no muestre por consola 'suspendes'
 
-
 // Aquí tu código
-
+let obj = {
+    a: {
+        b: true,
+        c: [1, 2]
+    },
+    d: 6,
+    f: 'strn'
+}
 // Hasta aquí
 
 // TEST 1

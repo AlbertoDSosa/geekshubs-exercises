@@ -7,10 +7,11 @@
 //  convierteEurosEnPesetas(1) === 168 // true
 
 // Aquí tu código
-
-
+function convierteEurosEnPesetas(euro) {
+    let pesetas = 168 * euro / 1;
+    return pesetas;
+}
 // Hasta aquí
-
 
 // TEST 1
 if (typeof convierteEurosEnPesetas === 'function' ) {

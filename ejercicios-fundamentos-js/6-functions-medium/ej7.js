@@ -12,10 +12,18 @@
 let sumaDesdeHasta = (desde, hasta) => {
     let sumatorio = 0;
     // Aquí tu código.  Desde aquí:
+    if(typeof desde !== 'number' || typeof hasta !== 'number') {
+        throw new Error('Debo recibir números');
+    }
 
+    for(let i = desde; i <= hasta; i++) {
+        // No entiendo este ejercicio.
+    }
     // Hasta aquí.
     return sumatorio;
 }
+
+console.log(sumaDesdeHasta(4,6));
 
 
 let test = require('../test.js');

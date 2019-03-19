@@ -13,7 +13,13 @@
 let transformaArrayEnOtraConSusLongitudes = (arrayDeStrings) => {
     let arrayDeLongitudes = [];
     // Aquí tu código.  Desde aquí:
+    if(!Array.isArray(arrayDeStrings)){
+        return 'Debo ser ejecutada con un array';
+    }
 
+    arrayDeStrings.forEach(function (value) {
+        arrayDeLongitudes.push(value.length);
+    });
     // Hasta aquí.
     return arrayDeLongitudes
 }

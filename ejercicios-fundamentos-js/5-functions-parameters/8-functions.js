@@ -7,7 +7,13 @@
 //  throw new Error('convierteEurosEnPesetas debe recibir un number');
 
 // Aquí tu código
-
+function convierteEurosEnPesetas(euro) {
+    let pesetas = 168 * euro / 1;
+    if(typeof euro !== 'number') {
+        throw new Error('convierteEurosEnPesetas debe recibir un number'); 
+    }
+    return pesetas;
+}
 // Hasta aquí
 
 

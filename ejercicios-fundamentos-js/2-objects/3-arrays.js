@@ -6,6 +6,16 @@
 
 // Aquí tu código
 
+let arr = [{
+    name: 'pepito',
+    age: 25
+}, {
+    name: 'pepito',
+    age: 23
+}, {
+    name: 'J',
+    age: 18
+}];
 
 // Hasta aquí
 
