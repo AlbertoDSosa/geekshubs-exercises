@@ -14,11 +14,13 @@
 let extraerAcronimo = (...input) => {
     let acronimo = '';
     // Aquí tu código.  Desde aquí:
-   
+    for(value of input){
+        acronimo += value[0];
+    }
     // Hasta aquí.
     return acronimo;
 }
-
+extraerAcronimo()
 
 let test = require('../test.js');
 

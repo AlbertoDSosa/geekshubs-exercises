@@ -6,17 +6,24 @@
 var Vector = function () {
     let _value = [];
 
-    function _setValues(newVector, _in, _out) {
+    function _setArguments(args, arr) {
+        arr = arr || [];
+        if(args.length) {
+            for(i = 0; i < args.length; i++) {
+                arr[i] = args[i.toString()];
+            }
+        }
+        return arr;
+    }
+
+    function _setValues(deleteVector, _in, _out) {
+
         for(let i = _in; i < _out; i++) {
-            newVector.push(_value[i]); 
+            deleteVector.push(_value[i]);
         } 
     }
 
-    if(arguments.length) {
-        for(let i = 0; i < arguments.length; i++) {
-            _value[i] = arguments[i.toString()];
-        }
-    }
+    _setArguments(arguments, _value);
 
     this.valueOf = function () {
         return _value;
@@ -40,24 +47,24 @@ var Vector = function () {
         return this.length();
     }
 
-    this.concat = function (vector) {
-        // Me guardo el lenght de value.
+    this.concat = function () {
+        let args = _setArguments(arguments);
         let _valueLength = this.length();
-        // Sumo el array que se pasa por parametro a value.
-        for(value of vector) {
-            this.push(value);
-        }
-        // Declaro un nuevo valor
         let _newValue = [];
-        // Guardo el valor de _value en _newValue
+    
+        for(value of args){
+            for(val of value) {
+                this.push(val);
+            }
+        }
+
         _newValue = _value;
-        // Borro o sobreescribo _value
         _value = [];
-        // Relleno _value con el length que había guardado
+
         for(let i = 0; i < _valueLength; i++) {
             this.push(_newValue[i]);
         }
-        // Retorno el valor nuevo
+
         return _newValue;
     }
     
@@ -85,32 +92,24 @@ var Vector = function () {
     }
 
     this.splice = function (start, deleteCount) {
-        let _newVector = new Vector();
-        let _newValue = [];
-        let _deleteValue = _newVector.valueOf();
+        let _deleteVector = new Vector();
+        let _newVector = new Vector;
+        let _deleteValue = _deleteVector.valueOf();
         let _valueLength = this.length();
+
         let end = start + deleteCount;
+        let _start = _valueLength + start;
 
         if(deleteCount === undefined) {
             deleteCount = _valueLength;
             end = deleteCount;
         }
         
-        let _start = _valueLength + start;
 
-        if(start >= 0 && deleteCount > 0) {
-            _setValues(_newVector, start, end);
-        } else if(start < 0 && deleteCount > 0) {
-            end = _start + deleteCount;
-            _setValues(_newVector,_start, end);
-        } else if(deleteCount <= 0 || typeof(deleteCount) !== 'number') {
-            _deleteValue = [];
-        }
-
-        let _deleteValueLength = _newVector.length();
+        let _leftValue = [];
+        let _rightValue = [];
         let args = [];
         let countArgs = 0;
-        let newValueLength = _deleteValueLength + _valueLength + countArgs;
         
         if(arguments[2]) {
             for(let i = 2; i < arguments.length; i++) {
@@ -118,25 +117,21 @@ var Vector = function () {
             }
         }
 
-        // Hacer filtro (puede que sea la misma dinamica para .filter)
-       
-        let count = 0;
-
-        for(let index = 0; index < _valueLength; index++) {
-            for(let i = 0; i < _deleteValueLength; i++) {
-                if(_value[index] !== _deleteValue[i]) {
-                    _newValue[count++] = _value[index];
-                }
-
-                if(_value[index] === _deleteValue[i] && args[0]){
-                    console.log('Ya no se como seguir', _value[index])
-                }
-
-            }
+        if(start >= 0 && deleteCount > 0) {
+            _setValues(_deleteVector, start, end);
+            _leftValue = this.slice(0, start);
+            _rightValue= this.slice(end, _valueLength);
+            _value = _newVector.concat(_leftValue, args, _rightValue);
+        } else if(start < 0 && deleteCount > 0) {
+            end = _start + deleteCount;
+            _setValues(_deleteVector,_start, end);
+            _leftValue = this.slice(0, _start);
+            _rightValue= this.slice(end, _valueLength);
+            _value = _newVector.concat(_leftValue, args, _rightValue);
+        } else if(deleteCount <= 0 || typeof(deleteCount) !== 'number') {
+            _deleteValue = [];
         }
-
-        _value = _newValue;
-
+        
         return  _deleteValue;
     }
 
@@ -149,9 +144,6 @@ var Vector = function () {
         for(let i = 1; i < _valueLength; i++) {
             _newVector.push(_value[i]);
         }
-
-        _value = _newValue;
-
         return _deleteValue;
     }
 
@@ -216,33 +208,34 @@ var Vector = function () {
 console.log('---> Vector Instance');
 var vector = new Vector('value1', 'value2');
 // console.log('Vector instance return: ', vector);
+console.log('---> Vector2 Instance');
+var Vector2 = new Vector('value5', 'value6', 'value7');
+// console.log('Vector2 instance return: ', Vector2);
 
-// console.log('--------- Lenght');
-
-// console.log('Vector .length() return: ', vector.length());
-// console.log('Vector valueOf return: ', vector.valueOf());
-// console.log('otherVector .length() return: ', otherVector.length());
+console.log('---> Vector3 Instance');
+var Vector3 = new Vector('value8', 'value9', 'value10');
+// console.log('Vector3 instance return: ', Vector3);
 
 // console.log('--------- Push');
-
 var vectorLength = vector.push( 'value3', 'value4');
 // console.log('Vector .push() return: ', vectorLength);
 // console.log('Vector valueOf return: ', vector.valueOf());
 
+// console.log('--------- Lenght');
+// console.log('Vector .length() return: ', vector.length());
+// console.log('Vector valueOf return: ', vector.valueOf());
+// console.log('Vector2 .length() return: ', Vector2.length());
 
-// console.log('---> otherVector Instance');
-// var otherVector = new Vector('value5', 'value6', 'value7');
-// console.log('otherVector instance return: ', otherVector);
-
+var vector2 = Vector2.valueOf();
+var vector3 = Vector3.valueOf();
 // console.log('--------- Concat');
-// var vector2 = otherVector.valueOf();
 // console.log('Vector valueOf before: ', vector.valueOf());
-// console.log('otherVector valueOf before: ', otherVector.valueOf());
-
-// console.log('Vector .concat(otherVector) return:', vector.concat(vector2));
-
+// console.log('Vector2 valueOf before: ', Vector2.valueOf());
+// console.log('Vector3 valueOf before: ', Vector2.valueOf());
+// console.log('Vector .concat(otherVector) return:', vector.concat(vector2, vector3));
 // console.log('Vector valueOf after: ', vector.valueOf());
-// console.log('otherVector valueOf after: ', otherVector.valueOf());
+// console.log('Vector2 valueOf after: ', Vector2.valueOf());
+// console.log('Vector3 valueOf after: ', Vector3.valueOf());
 
 // console.log('--------- Slice');
 // console.log('Vector valueOf before: ', vector.valueOf());
@@ -256,7 +249,7 @@ var vectorLength = vector.push( 'value3', 'value4');
 
 console.log('--------- Splice');
 console.log('Vector valueOf before: ', vector.valueOf());
-console.log('Vector .splice(0, 2) return:', vector.splice(-3, 1, 'arg1', 'arg2'));
+console.log('Vector .splice(1, 2) return:', vector.splice(1, 2, 'arg1', 'arg2'));
 console.log('Vector valueOf after: ', vector.valueOf());
 
 // console.log('--------- Reverse');
@@ -310,10 +303,10 @@ var otherArr = ['value5', 'value6', 'value7'];
 // console.log('Array .slice(-2, -1) return:', arr.slice(-2, -1));
 // console.log('Array valueOf() after', arr.valueOf());
 
-// console.log('--------- Splice');
-// console.log('Array valueOf() before', arr.valueOf());
-// console.log('Array .splice(0, 2) return:', arr.splice(-3, 1, 'arg1', 'arg2'));
-// console.log('Array valueOf() after', arr.valueOf());
+console.log('--------- Splice');
+console.log('Array valueOf() before', arr.valueOf());
+console.log('Array .splice(1, 2) return:', arr.splice(-1, 2, 'arg1', 'arg2'));
+console.log('Array valueOf() after', arr.valueOf());
 
 // console.log('--------- Reverse');
 // console.log('Array valueOf before: ', arr.valueOf());

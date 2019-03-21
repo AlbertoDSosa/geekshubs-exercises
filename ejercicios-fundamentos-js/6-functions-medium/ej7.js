@@ -17,14 +17,12 @@ let sumaDesdeHasta = (desde, hasta) => {
     }
 
     for(let i = desde; i <= hasta; i++) {
-        // No entiendo este ejercicio.
+        sumatorio += i;
+
     }
     // Hasta aquí.
     return sumatorio;
 }
-
-console.log(sumaDesdeHasta(4,6));
-
 
 let test = require('../test.js');
 

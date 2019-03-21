@@ -13,15 +13,17 @@
 // Ha de pasar los test adjuntados.
 
 // Aquí tu código.  Desde aquí:
-const conCuantosParametrosMeHanEjecutado;
+function conCuantosParametrosMeHanEjecutado(...input) {
+    return input.length;
+}
 // Hasta aquí.
 
 
 let test = require('../test.js');
 
-// console.log(conCuantosParametrosMeHanEjecutado(1, 2, 3, 4) === 4);
-// console.log(conCuantosParametrosMeHanEjecutado('aswd') === 1);
-// console.log(conCuantosParametrosMeHanEjecutado() === 0);
+console.log(conCuantosParametrosMeHanEjecutado(1, 2, 3, 4) === 4);
+console.log(conCuantosParametrosMeHanEjecutado('aswd') === 1);
+console.log(conCuantosParametrosMeHanEjecutado() === 0);
 
 
 test(conCuantosParametrosMeHanEjecutado, [], 0);
