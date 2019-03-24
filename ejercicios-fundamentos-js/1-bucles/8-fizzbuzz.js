@@ -5,12 +5,7 @@
 // Además los múltiplos de 3 y 5 ha de imprimir GEEKSHUBS
 
 function multiplo(int, num) {
-    var rest = num % int;
-    if(rest == 0) {
-        return true;
-    } else {
-        return false;
-    }  
+    return num % int === 0 ? true : false;
 }
 
 for(let i = 1; i <= 100; i++) {

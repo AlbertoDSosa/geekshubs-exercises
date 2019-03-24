@@ -12,7 +12,7 @@ console.log('El array frase es: ', frase);
 
 let acronimo = '';
 
-frase.forEach(function (value, index) {
+frase.forEach(function (value) {
     acronimo += value[0].toUpperCase()
 });
 
