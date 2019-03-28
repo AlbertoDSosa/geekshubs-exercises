@@ -1,0 +1,20 @@
+{
+  "name": "my-geeks-movies",
+  "version": "0.0.1",
+  "description": "Client/Server Model exercise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server/index.js",
+    "dev": "nodemon server/index.js --watch server/"
+  },
+  "author": "Alberto D.Sosa",
+  "license": "MIT",
+  "dependencies": {
+    "request": "^2.88.0",
+    "validator": "^10.11.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.10"
+  }
+}
