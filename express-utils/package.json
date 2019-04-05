@@ -1,0 +1,31 @@
+{
+  "name": "express-utils",
+  "version": "0.0.1",
+  "description": "Ejercicios de express para renderear emails con handlebars",
+  "main": "server/",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "export NODE_ENV=production || NODE_ENV= production || SET \"NODE_ENV=production\" && node server/",
+    "dev": "export NODE_ENV=development || NODE_ENV=development || SET \"NODE_ENV=development\" && nodemon --inspect server/"
+  },
+  "author": "Alberto D.Sosa",
+  "license": "MIT",
+  "dependencies": {
+    "bcrypt": "^3.0.5",
+    "express": "^4.16.4",
+    "hbs": "^4.0.3",
+    "hbs-utils": "0.0.4",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.11",
+    "mongoose": "^5.4.21",
+    "mongoose-validator": "^2.1.0",
+    "multer": "^1.4.1",
+    "nodemailer": "^6.0.0",
+    "nodemailer-express-handlebars": "^3.0.0",
+    "uniqid": "^5.0.3"
+  },
+  "devDependencies": {
+    "casual": "^1.6.0",
+    "nodemon": "^1.18.10"
+  }
+}
