@@ -43,6 +43,10 @@ const UserSchema = new mongoose.Schema({
       }
     }
   },
+  updatedAt: {
+    type: Date,
+    default: Date.now
+  },
   email: {
     type: String,
     required: true,
@@ -75,7 +79,9 @@ UserSchema.methods.createAuthToken = function () {
   const user = this;
  
     const token = jwt.sign({
-        _id: user._id
+      _id: user._id,
+      //iat: Date.now() / 1000,
+      exp: (Date.now() / 1000) + 600
     }, process.env.JWT_SECRET);
 
     user.tokens.push({
@@ -119,6 +125,10 @@ UserSchema.pre('save', function (next) {
   } else {
     next();
   }
+});
+
+UserSchema.pre('update', function() {
+  this.update({},{ $set: { updatedAt: new Date() } });
 });
 
 const User = mongoose.model('user', UserSchema);

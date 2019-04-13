@@ -1,7 +1,8 @@
 'use strict';
 
-require('./config');
+const { logger } = require('./config');
 const express = require('express');
+const morgan = require('morgan');
 
 const PORT = process.env.PORT || 3000;
 
@@ -12,6 +13,7 @@ hbsUtils.registerPartials(`${__dirname}/views/partials`);
 hbsUtils.registerWatchedPartials(`${__dirname}/views/partials`);
 
 server.use(express.json());
+server.use(morgan('combined', { stream: logger.stream }));
 
 server.set('view engine', 'hbs');
 server.set('views', `${__dirname}/views`);
